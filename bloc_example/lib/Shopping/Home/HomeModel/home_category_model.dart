@@ -14,9 +14,19 @@ class HomeCategoryModel {
   }
 
   static List<HomeCategoryModel> parseProducts(String responseBody) {
-    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-    return parsed
-        .map<HomeCategoryModel>((json) => HomeCategoryModel.fromJson(json))
-        .toList();
+  List<dynamic> responseParsed = jsonDecode(responseBody);
+  List<HomeCategoryModel> catModel = [];
+
+  for (var item in responseParsed) {
+    if (item is String) {
+      HomeCategoryModel singleModel = HomeCategoryModel(categoryName: item);
+      catModel.add(singleModel);
+    } else {
+      HomeCategoryModel singleModel = HomeCategoryModel(categoryName: item.toString());
+      catModel.add(singleModel);
+    }
   }
+
+  return catModel;
+}
 }

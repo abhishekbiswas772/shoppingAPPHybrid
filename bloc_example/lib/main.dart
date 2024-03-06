@@ -2,7 +2,8 @@ import 'package:bloc_example/Auth/AuthLogic/bloc/authentication_bloc.dart';
 import 'package:bloc_example/Auth/AuthPresent/auth_screen_signup.dart';
 import 'package:bloc_example/Routes/app_routes.dart';
 import 'package:bloc_example/Shopping/Details/product_details.dart';
-import 'package:bloc_example/Shopping/Home/home_screen.dart';
+import 'package:bloc_example/Shopping/Home/HomeLogic/bloc/home_logic_bloc.dart';
+import 'package:bloc_example/Shopping/Home/HomePresent/home_screen.dart';
 import 'package:bloc_example/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +26,8 @@ class ChatApp extends StatelessWidget {
         providers: [
           BlocProvider<AuthenticationBloc>(
             create: (_) => AuthenticationBloc(),
-          )
+          ),
+          BlocProvider<HomeLogicBloc>(create: (_) => HomeLogicBloc())
         ],
         child: MaterialApp(
           title: "Doctor Appointment App",
@@ -47,9 +49,9 @@ class AuthFlow extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               // For testing
-              return const ProductDetails();
+              return const ShoppingHome();
             } else {
-              return const ProductDetails();
+              return const AuthScreenSignup();
             }
           }),
     );

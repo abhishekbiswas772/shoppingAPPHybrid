@@ -57,4 +57,21 @@ class AuthRepo {
       return false;
     }
   }
+
+  void getCurrentUser(Function(AuthModel?) callBack) {
+    try {
+      final User? firebaseUser = _firebaseAuth.currentUser;
+      if (firebaseUser != null) {
+        AuthModel model = AuthModel(
+            id: firebaseUser.uid,
+            email: firebaseUser.email ?? "",
+            displayName: firebaseUser.displayName ?? "");
+        callBack(model);
+      } else {
+        callBack(null);
+      }
+    } catch (_) {
+      callBack(null);
+    }
+  }
 }

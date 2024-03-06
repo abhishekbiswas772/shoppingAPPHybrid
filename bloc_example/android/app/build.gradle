@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
+    compileSdkVersion 33
     lintOptions {
         checkReleaseBuilds false
     }
@@ -33,6 +34,8 @@ android {
     namespace "com.example.bloc_example"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+
+    
 
 
     compileOptions {

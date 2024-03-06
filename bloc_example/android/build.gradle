@@ -1,3 +1,12 @@
+// buildscript {
+//     ext.kotlin_version = '1.7.0'
+//     repositories {
+//         google()
+//         jcenter()
+//     }
+// }
+
+
 allprojects {
     repositories {
         google()
@@ -5,7 +14,6 @@ allprojects {
         jcenter()
     }
 }
-
 
 
 
@@ -20,3 +28,7 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+
+
+
