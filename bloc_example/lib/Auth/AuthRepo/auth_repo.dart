@@ -20,7 +20,6 @@ class AuthRepo {
     }
     return null;
   }
-
   Future<void> preformSignOutUser() async {
     final User? firebaseUser = _firebaseAuth.currentUser;
     if (firebaseUser != null) {

@@ -29,4 +29,19 @@ class HomeLogicFailure extends HomeLogicState {
   List<Object> get props => [errorMessage];
 }
 
+class HomeSpeechSuccess extends HomeLogicState {
+  final String recognizedString;
+  const HomeSpeechSuccess(this.recognizedString);
 
+  @override
+  List<Object> get props => [recognizedString];
+}
+
+class HomeSpeechLoading extends HomeLogicState {}
+class HomeSpeechFailure extends HomeLogicState {
+  final String error;
+  const HomeSpeechFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}

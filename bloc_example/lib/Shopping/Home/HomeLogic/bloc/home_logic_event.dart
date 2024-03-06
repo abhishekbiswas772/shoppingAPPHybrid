@@ -9,4 +9,4 @@ sealed class HomeLogicEvent extends Equatable {
 
 class HomePageCallerEvent extends HomeLogicEvent {}
 
-
+class HomePageSpeechEvent extends HomeLogicEvent {}

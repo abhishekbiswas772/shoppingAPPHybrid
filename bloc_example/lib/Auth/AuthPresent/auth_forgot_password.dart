@@ -13,7 +13,6 @@ class _AuthForgotScrrenState extends State<AuthForgotScrren> {
   final TextEditingController _mailController = TextEditingController();
   final GlobalKey<ScaffoldMessengerState> _authForgotScreenKey =
       GlobalKey<ScaffoldMessengerState>();
-  String? otpSecuredText;
 
   void clearTextFields() {
     _mailController.clear();

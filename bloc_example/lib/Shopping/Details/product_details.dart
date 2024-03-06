@@ -10,26 +10,21 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-
   Widget getColourWidget(Color mentionedColor) {
     return SizedBox(
-          width: 30,
-          height: 30,
-          child:  ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20)),
-            child: Container(
-              color: mentionedColor,
-            ),
-          )
-        );
+        width: 30,
+        height: 30,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20)),
+          child: Container(
+            color: mentionedColor,
+          ),
+        ));
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +32,46 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: SafeArea(
         child: Stack(
           children: [
-            Stack(children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.55,
-                child: Image.asset("assets/auth1.png",
-                    height: MediaQuery.of(context).size.height * 0.55)),
+            Stack(
+              children: [
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.55,
+                    child: Image.asset("assets/auth1.png",
+                        height: MediaQuery.of(context).size.height * 0.55)),
                 Container(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  height: 70, color: Colors.transparent, 
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Container(
-                      width: 65,
-                      height: 50,
-                      decoration: BoxDecoration(color: Colors.black.withOpacity(0.1),borderRadius: const BorderRadius.all(Radius.circular(10.0))),
-                      child: TextButton(onPressed: () {}, child: const Icon(Icons.arrow_back_sharp))),
-                    Container(
-                      width: 65,
-                      height: 50,
-                      decoration: BoxDecoration(color: Colors.black.withOpacity(0.1), borderRadius: const BorderRadius.all(Radius.circular(10.0))),
-                      child: TextButton(onPressed: () {}, child: const Icon(Icons.favorite)))
-
-                ],)),
-            ],),
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    height: 70,
+                    color: Colors.transparent,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            width: 65,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0))),
+                            child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Icon(Icons.arrow_back_sharp))),
+                        Container(
+                            width: 65,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0))),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: const Icon(Icons.favorite)))
+                      ],
+                    )),
+              ],
+            ),
             Column(
               children: [
                 SizedBox(
@@ -113,7 +123,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           const SizedBox(height: 5),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
                                 "VARIANTS",
@@ -128,15 +138,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      itemCount: 4,
-                                      itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(right: 10),
-                                        child: InkWell(onTap: () {},child: getColourWidget(Colors.black)),
-                                      );
-                                    })
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
+                                        itemCount: 4,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
+                                            child: InkWell(
+                                                onTap: () {},
+                                                child: getColourWidget(
+                                                    Colors.black)),
+                                          );
+                                        })
                                   ],
                                 ),
                               )
@@ -145,39 +159,70 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Transform.translate(
                             offset: const Offset(-22, 0),
                             child: SizedBox(
-                              child: Row(
+                                child: Row(
                               children: [
                                 Row(
                                   children: [
-                                    TextButton(onPressed: () {}, child: const Icon(Icons.add_rounded)),
+                                    TextButton(
+                                        onPressed: () {},
+                                        child: const Icon(Icons.add_rounded)),
                                     const Text("01"),
-                                    TextButton(onPressed: () {}, child: const Icon(Icons.remove)),
+                                    TextButton(
+                                        onPressed: () {},
+                                        child: const Icon(Icons.remove)),
                                   ],
                                 )
                               ],
                             )),
                           ),
-                          Expanded(child: 
-                          Row(
+                          Expanded(
+                              child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                            Container(
-                                width: 65,
-                                height: 50,
-                                decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(10.0)),border: Border.all(color: const Color.fromARGB(255, 80, 79, 79), width: 1.2)),
-                                child: TextButton(onPressed: () {}, child: const Icon(Icons.favorite))),
                               Container(
-                                width: 100,
-                                height: 50,
-                                decoration: BoxDecoration(color: Colors.blue[400], borderRadius: const BorderRadius.all(Radius.circular(10.0))),
-                                child: TextButton(onPressed: () {}, child: const Text("Buy Now", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15)))),
+                                  width: 65,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 80, 79, 79),
+                                          width: 1.2)),
+                                  child: TextButton(
+                                      onPressed: () {},
+                                      child: const Icon(Icons.favorite))),
                               Container(
-                                width: 120,
-                                height: 50,
-                                decoration: BoxDecoration(color: Colors.blue[400], borderRadius: const BorderRadius.all(Radius.circular(10.0))),
-                                child: TextButton(onPressed: () {}, child: const Text("Add to Cart", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15))))
-                          ],))
+                                  width: 100,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue[400],
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10.0))),
+                                  child: TextButton(
+                                      onPressed: () {},
+                                      child: const Text("Buy Now",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15)))),
+                              Container(
+                                  width: 120,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue[400],
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10.0))),
+                                  child: TextButton(
+                                      onPressed: () {},
+                                      child: const Text("Add to Cart",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15))))
+                            ],
+                          ))
                         ],
                       ),
                     ),

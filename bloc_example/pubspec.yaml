@@ -47,6 +47,7 @@ dependencies:
   flutter_profile_picture: ^2.0.0
   location: ^5.0.0
   geocoding: ^2.2.0
+  speech_to_text: ^6.6.0
 
 dev_dependencies:
   flutter_test:
