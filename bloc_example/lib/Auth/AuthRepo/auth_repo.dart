@@ -1,4 +1,5 @@
 import 'package:bloc_example/Auth/AuthModel/auth_model.dart';
+import 'package:bloc_example/Utils/username/username_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepo {
@@ -10,16 +11,21 @@ class AuthRepo {
               email: mail.trim(), password: password.trim());
       final User? firebaseUser = userCredential.user;
       if (firebaseUser != null) {
+        String generateDisplayName =
+            UserNameService.getGeneratedUserNameUsingEmailID(
+                firebaseUser.email ?? "");
+        firebaseUser.updateDisplayName(generateDisplayName);
         return AuthModel(
             id: firebaseUser.uid,
             email: firebaseUser.email ?? "",
-            displayName: firebaseUser.displayName ?? "");
+            displayName: generateDisplayName);
       }
     } on FirebaseAuthException catch (e) {
       print(e.toString());
     }
     return null;
   }
+
   Future<void> preformSignOutUser() async {
     final User? firebaseUser = _firebaseAuth.currentUser;
     if (firebaseUser != null) {

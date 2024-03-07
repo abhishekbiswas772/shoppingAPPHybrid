@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 
 class HomeAllProductModel {
   int id;
@@ -7,18 +8,26 @@ class HomeAllProductModel {
   String category;
   String images;
   String description;
+  int count = 1;
+  List<Color> varients = [
+    Colors.black,
+    Colors.brown,
+    Colors.red,
+    Colors.green,
+    Colors.blue
+  ];
+  bool isFav = false;
   Map<String, double> rating;
 
-  HomeAllProductModel({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.category,
-    required this.images,
-    required this.description,
-    required this.rating
-  });
-  
+  HomeAllProductModel(
+      {required this.id,
+      required this.title,
+      required this.price,
+      required this.category,
+      required this.images,
+      required this.description,
+      required this.rating});
+
   factory HomeAllProductModel.fromJson(Map<String, dynamic> json) {
     return HomeAllProductModel(
       id: json['id'],
@@ -40,5 +49,4 @@ class HomeAllProductModel {
         .map<HomeAllProductModel>((json) => HomeAllProductModel.fromJson(json))
         .toList();
   }
-
 }

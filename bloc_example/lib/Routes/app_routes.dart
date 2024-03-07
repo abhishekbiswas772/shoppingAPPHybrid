@@ -1,7 +1,8 @@
 import 'package:bloc_example/Auth/AuthPresent/auth_forgot_password.dart';
 import 'package:bloc_example/Auth/AuthPresent/auth_screen_login.dart';
 import 'package:bloc_example/Auth/AuthPresent/auth_screen_signup.dart';
-import 'package:bloc_example/Shopping/Details/product_details.dart';
+import 'package:bloc_example/Auth/Profile/ProfileScreen/profile_screen.dart';
+import 'package:bloc_example/Shopping/Details/DetailsPresent/product_details.dart';
 import 'package:bloc_example/Shopping/Home/HomePresent/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +17,15 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ShoppingHome());
       case "/forgot":
         return MaterialPageRoute(builder: (_) => const AuthForgotScrren());
+      case "/profile":
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       case "/details":
         if (settings.arguments != null && settings.arguments is int) {
           int productId = settings.arguments as int;
           return MaterialPageRoute(
             builder: (_) => ProductDetails(productId: productId),
           );
-        }else{
+        } else {
           return MaterialPageRoute(builder: (_) => const ShoppingHome());
         }
       default:

@@ -6,14 +6,19 @@ class ImageServiceUtil {
   static Widget getImage(String imageUrl) {
     CachedNetworkImage cachedNetworkImage = CachedNetworkImage(
       imageUrl: imageUrl,
-      progressIndicatorBuilder: (context, url, downloadProgress) =>
-          CircularProgressIndicator(value: downloadProgress.progress),
+      fit: BoxFit.cover,
+      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+          child: CircularProgressIndicator(value: downloadProgress.progress)),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
     return cachedNetworkImage;
   }
 
   static Widget getProfileImageWidgetFromName(String name) {
-    return ProfilePicture(name: name, radius: 40, fontsize: 15,);
+    return ProfilePicture(
+      name: name,
+      radius: 40,
+      fontsize: 15,
+    );
   }
 }

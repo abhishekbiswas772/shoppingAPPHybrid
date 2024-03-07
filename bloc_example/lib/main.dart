@@ -2,7 +2,7 @@ import 'package:bloc_example/Auth/AuthLogic/bloc/authentication_bloc.dart';
 import 'package:bloc_example/Auth/AuthPresent/auth_screen_signup.dart';
 import 'package:bloc_example/Routes/app_routes.dart';
 import 'package:bloc_example/Shopping/Details/bloc/details_logic_bloc.dart';
-import 'package:bloc_example/Shopping/Details/product_details.dart';
+import 'package:bloc_example/Shopping/Details/DetailsPresent/product_details.dart';
 import 'package:bloc_example/Shopping/Home/HomeLogic/bloc/home_logic_bloc.dart';
 import 'package:bloc_example/Shopping/Home/HomePresent/home_screen.dart';
 import 'package:bloc_example/firebase_options.dart';

@@ -15,7 +15,8 @@ class HomeLogicSuccess extends HomeLogicState {
   final HomeModel modelHome;
   final AuthModel authModel;
   final String locationString;
-  const HomeLogicSuccess(this.modelHome, this.authModel, this.locationString);
+  const HomeLogicSuccess(
+      this.modelHome, this.authModel, this.locationString);
 
   @override
   List<Object> get props => [modelHome];
@@ -38,6 +39,7 @@ class HomeSpeechSuccess extends HomeLogicState {
 }
 
 class HomeSpeechLoading extends HomeLogicState {}
+
 class HomeSpeechFailure extends HomeLogicState {
   final String error;
   const HomeSpeechFailure(this.error);

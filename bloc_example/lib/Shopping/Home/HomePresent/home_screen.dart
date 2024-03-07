@@ -1,5 +1,6 @@
 import 'package:bloc_example/Shopping/Home/HomeLogic/bloc/home_logic_bloc.dart';
 import 'package:bloc_example/Shopping/Home/HomeModel/home_category_model.dart';
+import 'package:bloc_example/Shopping/Home/HomeModel/home_model.dart';
 import 'package:bloc_example/Shopping/Home/HomeModel/home_model_all.dart';
 import 'package:bloc_example/Utils/Images/image_service.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
   final TextEditingController _searchController = TextEditingController();
   List<HomeCategoryModel>? categoryModel;
   List<HomeAllProductModel>? allProductModel;
+  List<HomeBanner>? bannerModel;
   String? locationAddress;
   final GlobalKey<ScaffoldMessengerState> _speechService =
       GlobalKey<ScaffoldMessengerState>();
@@ -94,6 +96,8 @@ class _ShoppingHomeState extends State<ShoppingHome> {
             categoryModel = state.modelHome.allCategory;
             allProductModel = state.modelHome.allProductModel;
             locationAddress = state.locationString.toString();
+            bannerModel = state.modelHome.bannerList;
+
             return SingleChildScrollView(
               physics: const NeverScrollableScrollPhysics(),
               child: SizedBox(
@@ -113,14 +117,8 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        // showDialog(context: context, builder: (context){
-                                        //   return AlertDialog(
-                                        //     title: Text("Wish to signout"),
-                                        //     actions: [
-
-                                        //     ],
-                                        //   )
-                                        // });
+                                        Navigator.of(context)
+                                            .pushNamed("/profile");
                                       },
                                       child: Container(
                                         width: 40,
@@ -137,8 +135,8 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                       ),
                                     ),
                                     const SizedBox(width: 8),
-                                    const Text("Hi, User",
-                                        style: TextStyle(
+                                    Text(state.authModel.displayName,
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 21,
                                             fontWeight: FontWeight.w700)),
@@ -172,25 +170,31 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                           child: Column(
                             children: [
                               Container(
-                                padding:
-                                    const EdgeInsets.only(top: 40, left: 20),
+                                padding: const EdgeInsets.only(
+                                    top: 40, left: 20, right: 15),
                                 height: 200,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: 4,
+                                  itemCount: bannerModel?.length ?? 0,
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: Image.asset(
-                                        "assets/auth1.png",
-                                        fit: BoxFit.cover,
-                                        height: 200,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                      ),
-                                    );
+                                        padding: const EdgeInsets.only(
+                                          right: 15.0,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10.0)),
+                                          child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              height: 200,
+                                              child: ImageServiceUtil.getImage(
+                                                  bannerModel?[index]
+                                                          .mobileImageBanner ??
+                                                      "")),
+                                        ));
                                   },
                                 ),
                               ),
@@ -232,7 +236,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                   height: MediaQuery.of(context).size.height -
                                       200 -
                                       70 -
-                                      100,
+                                      230,
                                   child: MasonryGridView.builder(
                                       shrinkWrap: true,
                                       gridDelegate:

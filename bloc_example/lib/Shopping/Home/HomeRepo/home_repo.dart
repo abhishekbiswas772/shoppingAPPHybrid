@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:isolate';
 import 'package:bloc_example/Shopping/Home/HomeModel/home_category_model.dart';
 import 'package:bloc_example/Shopping/Home/HomeModel/home_model.dart';
@@ -10,16 +11,20 @@ class HomeRepo {
   Future<HomeModel?> getProductAndCategory() async {
     final ReceivePort productPort = ReceivePort();
     final ReceivePort categoryPort = ReceivePort();
+    final ReceivePort bannerPort = ReceivePort();
     final List<Isolate> isolates = [];
 
     isolates.add(await Isolate.spawn(fetchProduct, productPort.sendPort));
     isolates.add(await Isolate.spawn(fetchCategory, categoryPort.sendPort));
+    isolates.add(await Isolate.spawn(fetchBanner, bannerPort.sendPort));
 
     final productFuture = productPort.first;
     final categoryFuture = categoryPort.first;
+    final bannerFuture = bannerPort.first;
 
     List<HomeAllProductModel>? productData;
     List<HomeCategoryModel>? categoryData;
+    List<HomeBanner>? bannerData;
 
     try {
       productData = await productFuture as List<HomeAllProductModel>?;
@@ -33,20 +38,48 @@ class HomeRepo {
       print('Error fetching category: $e');
     }
 
+    try {
+      bannerData = await bannerFuture as List<HomeBanner>?;
+    } catch (e) {
+      print('Error fetching category: $e');
+    }
+
     productPort.close();
     categoryPort.close();
+    bannerPort.close();
 
     for (final isolate in isolates) {
       isolate.kill();
     }
 
-    if (productData != null && categoryData != null) {
-      HomeModel initHomeModel =
-          HomeModel(allCategory: categoryData, allProductModel: productData);
+    if (productData != null && categoryData != null && bannerData != null) {
+      HomeModel initHomeModel = HomeModel(
+          allCategory: categoryData,
+          allProductModel: productData,
+          bannerList: bannerData);
       return initHomeModel;
     } else {
       return null;
     }
+  }
+}
+
+void fetchBanner(SendPort sendPort) async {
+  final String bannerURI = HomeConstants.bannerURI;
+  final http.Response response = await http.get(Uri.parse(bannerURI));
+  if (response.statusCode == 200) {
+    List<HomeBanner> bannerListCreated = [];
+    List<dynamic> bannerArray = json.decode(response.body);
+    for (var item in bannerArray) {
+      String title = item["title"] as String;
+      String mobileStringImage = item["imageMobile"] as String;
+      HomeBanner homeBanner =
+          HomeBanner(title: title, mobileImageBanner: mobileStringImage);
+      bannerListCreated.add(homeBanner);
+    }
+    sendPort.send(bannerListCreated);
+  } else {
+    sendPort.send(null);
   }
 }
 
