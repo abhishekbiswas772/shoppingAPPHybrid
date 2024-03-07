@@ -8,11 +8,13 @@ sealed class DetailsLogicState extends Equatable {
   List<Object> get props => [];
 }
 
-class DetailsLogicInitial extends DetailsLogicState {}
-
+class DetailsLogicInit extends DetailsLogicState {}
 class DetailsLogicLoading extends DetailsLogicState {}
 
-class DetailsLogicSuccess extends DetailsLogicState {}
+class DetailsLogicSuccess extends DetailsLogicState {
+  final HomeAllProductModel model;
+  const DetailsLogicSuccess(this.model);
+}
 
 class DetailsLogicFailure extends DetailsLogicState {
   final String errorString;

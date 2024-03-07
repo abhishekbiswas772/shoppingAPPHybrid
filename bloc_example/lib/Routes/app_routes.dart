@@ -17,7 +17,14 @@ class AppRouter {
       case "/forgot":
         return MaterialPageRoute(builder: (_) => const AuthForgotScrren());
       case "/details":
-        return MaterialPageRoute(builder: (_) => const ProductDetails());
+        if (settings.arguments != null && settings.arguments is int) {
+          int productId = settings.arguments as int;
+          return MaterialPageRoute(
+            builder: (_) => ProductDetails(productId: productId),
+          );
+        }else{
+          return MaterialPageRoute(builder: (_) => const ShoppingHome());
+        }
       default:
         return MaterialPageRoute(builder: (_) => const AuthScreenSignup());
     }

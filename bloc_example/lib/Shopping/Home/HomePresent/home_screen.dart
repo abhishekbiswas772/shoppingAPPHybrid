@@ -112,7 +112,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                 Row(
                                   children: [
                                     InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         // showDialog(context: context, builder: (context){
                                         //   return AlertDialog(
                                         //     title: Text("Wish to signout"),
@@ -128,8 +128,9 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                                 width: 1, color: Colors.white),
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(20.0))),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20.0))),
                                         child: ImageServiceUtil
                                             .getProfileImageWidgetFromName(
                                                 state.authModel.email),
@@ -241,8 +242,10 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
-                                            Navigator.of(context)
-                                                .pushNamed("/details");
+                                            Navigator.of(context).pushNamed(
+                                                "/details",
+                                                arguments:
+                                                    allProductModel?[index].id);
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.only(
@@ -295,7 +298,19 @@ class _ShoppingHomeState extends State<ShoppingHome> {
               child: CircularProgressIndicator(),
             );
           } else if (state is HomeLogicFailure) {
-            return const Placeholder();
+            return const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.warning_amber_rounded, size: 40),
+                SizedBox(
+                  height: 3,
+                ),
+                Text("Some Error Happended,",
+                    style:
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+              ],
+            );
           } else {
             return const Center(
               child: Column(

@@ -7,3 +7,11 @@ sealed class DetailsLogicEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class HomeProductDetailsEvent extends DetailsLogicEvent {
+  final int productId;
+  const HomeProductDetailsEvent({required this.productId});
+
+  @override
+  List<Object> get props => [productId];
+}
