@@ -66,5 +66,24 @@ class AuthenticationBloc
       }
       emit(const AuthenticationEmailLoading(isLoading: false));
     });
+
+    on<AuthProfileDetailsEvent>((event, emit) {
+      try {
+        AuthModel? authModel;
+        authRepo.getCurrentUser((p0) {
+          authModel = p0;
+        });
+        if (authModel != null) {
+          emit(AuthenticationSuccessState(authModel!));
+        } else {
+          emit(const AuthenticationFailureState(
+              "Failed To get Details for this user"));
+        }
+      } catch (e) {
+        print(e.toString());
+        emit(const AuthenticationFailureState(
+            "Failed To get Details for this user"));
+      }
+    });
   }
 }

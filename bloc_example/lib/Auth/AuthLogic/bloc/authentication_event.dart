@@ -34,4 +34,4 @@ class AuthEmailReset extends AuthenticationEvent {
   List<Object> get props => [mail];
 }
 
-
+class AuthProfileDetailsEvent extends AuthenticationEvent {}

@@ -8,6 +8,8 @@ sealed class DetailsLogicEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class HomeDetailsInitEvent extends DetailsLogicEvent {}
+
 class HomeProductDetailsEvent extends DetailsLogicEvent {
   final int productId;
   const HomeProductDetailsEvent({required this.productId});
@@ -15,3 +17,5 @@ class HomeProductDetailsEvent extends DetailsLogicEvent {
   @override
   List<Object> get props => [productId];
 }
+
+class HomeDetailsResetInitEvent extends DetailsLogicEvent {}

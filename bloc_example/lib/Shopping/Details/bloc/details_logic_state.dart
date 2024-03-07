@@ -9,6 +9,7 @@ sealed class DetailsLogicState extends Equatable {
 }
 
 class DetailsLogicInit extends DetailsLogicState {}
+class DetailLogicInitReset extends DetailsLogicState {}
 class DetailsLogicLoading extends DetailsLogicState {}
 
 class DetailsLogicSuccess extends DetailsLogicState {

@@ -32,13 +32,19 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<DetailsLogicBloc>(context)
+        .add(HomeProductDetailsEvent(productId: widget.productId));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // print(widget.productId);
     return Scaffold(
       body: BlocBuilder<DetailsLogicBloc, DetailsLogicState>(
         builder: (context, state) {
           if (state is DetailsLogicInit) {
-            BlocProvider.of<DetailsLogicBloc>(context)
-                .add(HomeProductDetailsEvent(productId: widget.productId));
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -104,7 +110,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height -
                               (MediaQuery.of(context).size.height * 0.45) +
-                              30,
+                              100,
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: Colors.white,

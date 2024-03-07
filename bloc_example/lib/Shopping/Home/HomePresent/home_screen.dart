@@ -80,6 +80,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEA3A60),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFFEA3A60),
@@ -131,7 +132,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                                     Radius.circular(20.0))),
                                         child: ImageServiceUtil
                                             .getProfileImageWidgetFromName(
-                                                state.authModel.email),
+                                                state.authModel.email, null),
                                       ),
                                     ),
                                     const SizedBox(width: 8),
@@ -171,7 +172,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                             children: [
                               Container(
                                 padding: const EdgeInsets.only(
-                                    top: 40, left: 20, right: 15),
+                                    top: 40, left: 17, right: 10),
                                 height: 200,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
@@ -179,7 +180,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                   itemBuilder: (context, index) {
                                     return Padding(
                                         padding: const EdgeInsets.only(
-                                          right: 15.0,
+                                          right: 10.0,
                                         ),
                                         child: ClipRRect(
                                           borderRadius: const BorderRadius.all(
@@ -236,7 +237,7 @@ class _ShoppingHomeState extends State<ShoppingHome> {
                                   height: MediaQuery.of(context).size.height -
                                       200 -
                                       70 -
-                                      230,
+                                      220,
                                   child: MasonryGridView.builder(
                                       shrinkWrap: true,
                                       gridDelegate:

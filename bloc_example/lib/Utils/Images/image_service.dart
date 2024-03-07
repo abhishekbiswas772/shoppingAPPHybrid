@@ -14,11 +14,11 @@ class ImageServiceUtil {
     return cachedNetworkImage;
   }
 
-  static Widget getProfileImageWidgetFromName(String name) {
+  static Widget getProfileImageWidgetFromName(String name, int? fontSize) {
     return ProfilePicture(
       name: name,
       radius: 40,
-      fontsize: 15,
+      fontsize: fontSize?.toDouble() ?? 15,
     );
   }
 }

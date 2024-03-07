@@ -9,7 +9,11 @@ part 'details_logic_state.dart';
 
 class DetailsLogicBloc extends Bloc<DetailsLogicEvent, DetailsLogicState> {
   final DetailsRepo _detailsRepo = DetailsRepo();
+
   DetailsLogicBloc() : super(DetailsLogicInit()) {
+    on<HomeDetailsInitEvent>((event, emit) {
+      emit(DetailLogicInitReset());
+    });
     on<HomeProductDetailsEvent>((event, emit) async {
       emit(DetailsLogicLoading());
       try {

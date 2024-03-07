@@ -47,3 +47,11 @@ class AuthenticationEmailLoading extends AuthenticationState {
   final bool isLoading;
   const AuthenticationEmailLoading({required this.isLoading});
 }
+
+class AuthProfileDetails extends AuthenticationState {
+  final AuthModel model;
+  const AuthProfileDetails(this.model);
+
+  @override
+  List<Object> get props => [model];
+}
